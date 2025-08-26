@@ -84,12 +84,12 @@ function QuizProvider({ children }) {
     0
   );
 useEffect(() => {
-  fetch("http://localhost:3001/questions") // must match the working port
+  fetch("/data/db.json") // must match the working port
     .then((res) => {
       if (!res.ok) throw new Error("Network response was not ok");
       return res.json();
     })
-    .then((data) => dispatch({ type: "dataReceived", payload: data })) // data is already an array
+    .then((data) => dispatch({ type: "dataReceived", payload: data.questions })) // data is already an array
     .catch((err) => {
       console.error("Fetch failed:", err);
       dispatch({ type: "dataFailed" });
